@@ -41,4 +41,4 @@ for file_name in selected_files:
     file_path = os.path.join(directory_path, file_name)
     dest_path = os.path.join(temp_directory_path_2, file_name)
     shutil.move(file_path, dest_path)
-    print(f"Moved file: {file_name} to temp_2 directory.")
+    print("Moved file: {file_name} to temp_2 directory.")
