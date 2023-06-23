@@ -1,6 +1,4 @@
 import os
-import random
-import shutil
 import cv2
 
 MAX_COUNT = 64879

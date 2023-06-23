@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 import tensorflow as tf
 from keras.preprocessing.image import ImageDataGenerator
-from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 
 train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/test"
 validation_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/validation"
@@ -19,13 +18,13 @@ MODEL_SAVE_FOLDER_PATH = './model/'
 
 def create_model():
     model = tf.keras.models.Sequential()
-    model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(512, 384, 3)))
-    model.add(MaxPooling2D((2, 2)))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D((2, 2)))
-    model.add(Flatten())
-    model.add(Dense(64, activation='relu'))
-    model.add(Dense(num_classes, activation='softmax'))
+    model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(512, 384, 3)))
+    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+    model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
+    model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+    model.add(tf.keras.layers.Flatten())
+    model.add(tf.keras.layers.Dense(units=64, activation='relu'))
+    model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
     return model
 
 
@@ -52,7 +51,7 @@ model = create_model()
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-model_path = MODEL_SAVE_FOLDER_PATH + 'KoreanCar-' + '{epoch:02d}-{val_loss:4f}.hdf5'
+model_path = MODEL_SAVE_FOLDER_PATH + 'KoreanCar-' + '{epoch:02d}-{val_loss:4f}.keras'
 cb_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=model_path, monitor='val_loss',
                                                    verbose=1, save_best_only=True)
 
