@@ -13,7 +13,7 @@ batch_size = 64
 num_classes = 100
 epochs = 2
 
-MODEL_SAVE_FOLDER_PATH = './model/'
+MODEL_SAVE_FOLDER_PATH = '../lib/model/'
 
 
 def create_model():
