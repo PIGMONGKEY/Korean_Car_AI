@@ -1,17 +1,22 @@
 import os
-
 import matplotlib.pyplot as plt
+
+os.environ['TF_ENABLE_GPU_GARBAGE_COLLECTION'] = 'true'
+os.environ['TF_MACOS_GPU_LIBRARY_PATH'] = '/System/Library/Frameworks/Metal.framework/Versions/Current/Frameworks/\
+    GPUCompiler.framework/Versions/Current/lib/libgpucompiler.dylib'
 
 import tensorflow as tf
 from keras.preprocessing.image import ImageDataGenerator
 
-train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/test"
+print(tf.config.list_physical_devices())
+
+train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/train"
 validation_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/validation"
 
 image_size = (512, 384)
-batch_size = 64
+batch_size = 32
 num_classes = 100
-epochs = 2
+epochs = 10
 
 MODEL_SAVE_FOLDER_PATH = '../lib/model/'
 
@@ -51,9 +56,11 @@ model = create_model()
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-model_path = MODEL_SAVE_FOLDER_PATH + 'KoreanCar-' + '{epoch:02d}-{val_loss:4f}.keras'
-cb_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=model_path, monitor='val_loss',
-                                                   verbose=1, save_best_only=True)
+model_path = MODEL_SAVE_FOLDER_PATH + 'KoreanCar-' + '{epoch:02d}-{val_loss:4f}.hdf5'
+cb_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=model_path,
+                                                   monitor='val_loss',
+                                                   verbose=1,
+                                                   save_best_only=True)
 
 history = model.fit(
     train_data,
