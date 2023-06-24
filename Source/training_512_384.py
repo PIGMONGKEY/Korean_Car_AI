@@ -22,7 +22,7 @@ MODEL_SAVE_FOLDER_PATH = '../lib/model/'
 
 def create_model():
     model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(512, 384, 3)))
+    model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(384, 512, 3)))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
     model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
