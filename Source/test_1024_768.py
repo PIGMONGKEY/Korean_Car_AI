@@ -43,8 +43,6 @@ for folder_name in sorted(os.listdir(TEST_IMAGE_DIRECTORY)):  # 클래스 이름
         if answer_class == class_labels[predicted_class + 1]:
             correct_prediction_count += 1
             correct_prediction_image_path.append(test_image_path)
-            shutil.copy(test_image_path, PREDICTION_CORRECT_PATH)
+            shutil.copy(test_image_path, PREDICTION_CORRECT_PATH)  # prediction_correct 파일에 정답 파일 복리
 
 print(f"{test_image_count} / {correct_prediction_count}")
-for path in correct_prediction_image_path:
-    print(path)

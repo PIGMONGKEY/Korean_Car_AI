@@ -69,7 +69,7 @@ history = model.fit(
     validation_data=validation_data
 )
 
-model.save(MODEL_SAVE_FOLDER_PATH + 'korean_car_model.hdf5')
+model.save(MODEL_SAVE_FOLDER_PATH + 'korean_car_model_512_384.hdf5')
 
 plt.plot(history.history['loss'], label='Training Loss')
 plt.plot(history.history['val_loss'], label='Validation Loss')

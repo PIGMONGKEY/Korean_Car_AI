@@ -12,7 +12,7 @@ print(tf.config.list_physical_devices())
 train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/1024_768/train"
 validation_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/validation"
 
-image_size = (768, 1024)
+image_size = (768, 1024)  # height, width
 batch_size = 8
 num_classes = 100
 epochs = 5
@@ -37,19 +37,17 @@ if not os.path.exists(MODEL_SAVE_FOLDER_PATH):
 
 data_generator = ImageDataGenerator(rescale=1. / 255)
 
-train_data = data_generator.flow_from_directory(
-    train_data_dir,
-    target_size=image_size,
-    batch_size=batch_size,
-    class_mode='categorical'
-)
+train_data = data_generator.flow_from_directory(train_data_dir,
+                                                target_size=image_size,
+                                                batch_size=batch_size,
+                                                class_mode='categorical'
+                                                )
 
-validation_data = data_generator.flow_from_directory(
-    validation_data_dir,
-    target_size=image_size,
-    batch_size=batch_size,
-    class_mode='categorical'
-)
+validation_data = data_generator.flow_from_directory(validation_data_dir,
+                                                     target_size=image_size,
+                                                     batch_size=batch_size,
+                                                     class_mode='categorical'
+                                                     )
 
 model = create_model()
 
