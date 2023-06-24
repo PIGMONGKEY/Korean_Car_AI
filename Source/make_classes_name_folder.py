@@ -1,7 +1,7 @@
 import os
 import shutil
 
-directory_path = "/Users/pigmong0202/KoreanCar_DataSets/512_384/"
+directory_path = "/Users/pigmong0202/KoreanCar_DataSets/1024_768/"
 file_list = os.listdir(directory_path)
 
 for file_name in file_list:                             #train / test / validation
@@ -27,17 +27,17 @@ for file_name in file_list:                             #train / test / validati
                     continue
 
                 if file_name == "test":
-                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/512_384_1/test",
+                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/temp/test",
                                                    file_name_2 + "_" + file_name_3)
                     if not os.path.exists(new_folder_path):
                         os.mkdir(new_folder_path)
                 elif file_name == "validation":
-                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/512_384_1/validation",
+                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/temp/validation",
                                                    file_name_2 + "_" + file_name_3)
                     if not os.path.exists(new_folder_path):
                         os.mkdir(new_folder_path)
                 else:
-                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/512_384_1/train",
+                    new_folder_path = os.path.join("/Users/pigmong0202/KoreanCar_DataSets/temp/train",
                                                    file_name_2 + "_" + file_name_3)
                     if not os.path.exists(new_folder_path):
                         os.mkdir(new_folder_path)
@@ -50,5 +50,5 @@ for file_name in file_list:                             #train / test / validati
                         continue
                     image_path = os.path.join(path_4, file_name_4)
                     dest_path = os.path.join(new_folder_path, file_name_4)
-                    # shutil.move(image_path, dest_path)
+                    shutil.move(image_path, dest_path)
                     print(image_path, "->", dest_path)

@@ -9,11 +9,11 @@ os.environ['TF_MACOS_GPU_LIBRARY_PATH'] = '/System/Library/Frameworks/Metal.fram
 
 print(tf.config.list_physical_devices())
 
-train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/train"
+train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/1024_768/train"
 validation_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/validation"
 
-image_size = (384, 512)
-batch_size = 32
+image_size = (768, 1024)
+batch_size = 8
 num_classes = 100
 epochs = 5
 
@@ -22,7 +22,7 @@ MODEL_SAVE_FOLDER_PATH = '../lib/model/'
 
 def create_model():
     model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(384, 512, 3)))
+    model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(768, 1024, 3)))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
     model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
@@ -55,21 +55,13 @@ model = create_model()
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-model_path = MODEL_SAVE_FOLDER_PATH + 'KoreanCar-' + '{epoch:02d}-{val_loss:4f}.hdf5'
-cb_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=model_path,
-                                                   monitor='val_loss',
-                                                   verbose=1,
-                                                   save_best_only=True)
-
 history = model.fit(
     train_data,
     epochs=epochs,
-    verbose=1,
-    callbacks=cb_checkpoint,
     validation_data=validation_data
 )
 
-model.save(MODEL_SAVE_FOLDER_PATH + 'korean_car_model.hdf5')
+model.save(MODEL_SAVE_FOLDER_PATH + 'korean_car_model_1024_768.hdf5')
 
 plt.plot(history.history['loss'], label='Training Loss')
 plt.plot(history.history['val_loss'], label='Validation Loss')
