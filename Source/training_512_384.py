@@ -1,12 +1,11 @@
 import os
 import matplotlib.pyplot as plt
+import tensorflow as tf
+from keras.preprocessing.image import ImageDataGenerator
 
 os.environ['TF_ENABLE_GPU_GARBAGE_COLLECTION'] = 'true'
 os.environ['TF_MACOS_GPU_LIBRARY_PATH'] = '/System/Library/Frameworks/Metal.framework/Versions/Current/Frameworks/\
     GPUCompiler.framework/Versions/Current/lib/libgpucompiler.dylib'
-
-import tensorflow as tf
-from keras.preprocessing.image import ImageDataGenerator
 
 print(tf.config.list_physical_devices())
 
