@@ -12,7 +12,7 @@ print(tf.config.list_physical_devices())
 train_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/train"
 validation_data_dir = "/Users/pigmong0202/KoreanCar_DataSets/512_384/validation"
 
-image_size = (512, 384)
+image_size = (384, 512)
 batch_size = 32
 num_classes = 100
 epochs = 10
