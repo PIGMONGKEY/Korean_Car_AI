@@ -5,7 +5,7 @@ import numpy as np
 import tensorflow as tf
 from keras.preprocessing import image
 
-MODEL_PATH = "../lib/model/korean_car_model_1024_768.hdf5"
+MODEL_PATH = "../lib/model/korean_car_model_1024_768_1.hdf5"
 TEST_IMAGE_DIRECTORY = "/Users/pigmong0202/KoreanCar_DataSets/1024_768/test"
 TRAIN_IMAGE_DIRECTORY = "/Users/pigmong0202/KoreanCar_DataSets/1024_768/train"
 
